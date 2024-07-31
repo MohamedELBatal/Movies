@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -20,7 +21,7 @@ class HomeTab extends StatefulWidget {
   List<Results> results;
   List<Response> data;
 
-  HomeTab({required this.results,required this.data, super.key});
+  HomeTab({required this.results, required this.data, super.key});
 
   @override
   State<HomeTab> createState() => _HomeTabState();
@@ -28,8 +29,7 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   int _currentIndex = 0;
-  int index= 0;
-
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +79,26 @@ class _HomeTabState extends State<HomeTab> {
                       autoPlayInterval: 4500,
                       isLoop: true,
                       children: [
-                        Image.asset("assets/images/fast.jpg",fit: BoxFit.fitHeight,),
-                        Image.asset("assets/images/black.jpg",fit: BoxFit.fill,),
-                        Image.asset("assets/images/dark.jpg",fit: BoxFit.cover,),
-                        Image.asset("assets/images/planet.jpg",fit: BoxFit.cover,),
-                        Image.asset("assets/images/godzilla.jpg",fit: BoxFit.fill,),
+                        Image.asset(
+                          "assets/images/fast.jpg",
+                          fit: BoxFit.fitHeight,
+                        ),
+                        Image.asset(
+                          "assets/images/black.jpg",
+                          fit: BoxFit.fill,
+                        ),
+                        Image.asset(
+                          "assets/images/dark.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                        Image.asset(
+                          "assets/images/planet.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                        Image.asset(
+                          "assets/images/godzilla.jpg",
+                          fit: BoxFit.fill,
+                        ),
                       ],
                     ),
                   ],
@@ -106,15 +121,14 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                       ),
                       (state.popularModel != null)
-                          ? NewRelease((state.popularModel?.data ?? [])
-                              .cast<Response>())
+                          ? NewRelease(
+                              (state.popularModel?.data ?? []).cast<Response>())
                           : SizedBox(
                               height: 270.h,
                               child: const Center(
                                 child: CircularProgressIndicator(),
                               ),
                             ),
-
                     ],
                   ),
                 ),
@@ -189,21 +203,28 @@ class _HomeTabState extends State<HomeTab> {
                               ),
                             ),
                             Positioned(
-                              top: 10.h,
-                              left: 10.w,
-                              child: Container(
-                                width: 30.w,
-                                height: 30.h,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
+                              top: -5.h,
+                              left: -10.w,
+                              child: Stack(
+                                  children: [
+                                ImageIcon(
+                                  const AssetImage(
+                                      "assets/images/bookmark.png"
+                                  ),
+                                  size: 50.sp,
+                                  // color: const Color(0xff514F4F),
+                                  color: Colors.grey[800],
                                 ),
-                                child: Icon(
-                                  Icons.add,
-                                  size: 20.sp,
-                                  color: Colors.black,
+                                Positioned(
+                                  top: 10.h,
+                                  left: 13.w,
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
                                 ),
-                              ),
+                              ]),
                             ),
                           ],
                         ),
@@ -227,116 +248,115 @@ class _HomeTabState extends State<HomeTab> {
               ),
       );
 
-  // Widget Recommended(List<Results> results) => Container(
-  //   height: 250.h,
-  //   margin: EdgeInsets.only(left: 16.w),
-  //   child: results.isEmpty
-  //       ? const Center(
-  //     child: Text('No Results Found'),
-  //   )
-  //       : ListView.builder(
-  //     scrollDirection: Axis.horizontal,
-  //     itemCount: results.length,
-  //     itemBuilder: (context, i) {
-  //       return Container(
-  //         width: 140.w,
-  //         margin: EdgeInsets.only(right: 10.w),
-  //         child: Column(
-  //           crossAxisAlignment: CrossAxisAlignment.start,
-  //           children: [
-  //             Stack(
-  //               children: [
-  //                 Container(
-  //                   height: 150.h,
-  //                   child: results[i].backdropPath != null
-  //                       ? CachedNetworkImage(
-  //                     imageUrl:
-  //                     'https://image.tmdb.org/t/p/w500${results[i].backdropPath}',
-  //                     imageBuilder: (context, imageProvider) => Container(
-  //                       decoration: BoxDecoration(
-  //                         image: DecorationImage(
-  //                           image: imageProvider,
-  //                           fit: BoxFit.cover,
-  //                         ),
-  //                         borderRadius: BorderRadius.circular(10),
-  //                       ),
-  //                     ),
-  //                     placeholder: (context, url) => const Center(
-  //                       child: CircularProgressIndicator(),
-  //                     ),
-  //                     errorWidget: (context, url, error) => const Icon(Icons.error),
-  //                   )
-  //                       : const Center(
-  //                     child: Text(
-  //                       'No Image',
-  //                       style: TextStyle(color: Colors.white),
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 Positioned(
-  //                   top: 10.h,
-  //                   left: 10.w,
-  //                   child: Container(
-  //                     width: 30.w,
-  //                     height: 30.h,
-  //                     decoration: const BoxDecoration(
-  //                       color: Colors.white,
-  //                       shape: BoxShape.circle,
-  //                     ),
-  //                     child: Icon(
-  //                       Icons.add,
-  //                       size: 20.sp,
-  //                       color: Colors.black,
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //             Padding(
-  //               padding: EdgeInsets.only(top: 8.h),
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   Text(
-  //                     results[i].title ?? 'No Title',
-  //                     style: TextStyle(
-  //                       color: Colors.white,
-  //                       fontSize: 14.sp,
-  //                       fontWeight: FontWeight.w500,
-  //                     ),
-  //                     maxLines: 1,
-  //                     overflow: TextOverflow.ellipsis,
-  //                   ),
-  //                   SizedBox(height: 4.h),
-  //                   Row(
-  //                     children: [
-  //                       Icon(Icons.star, color: Colors.yellow, size: 18.sp),
-  //                       SizedBox(width: 4.w),
-  //                       Text(
-  //                         '${results[i].voteAverage ?? 0.0}',
-  //                         style: TextStyle(
-  //                           color: Colors.white,
-  //                           fontSize: 12.sp,
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                   SizedBox(height: 4.h),
-  //                   Text(
-  //                     'Release Date: ${results[i].releaseDate ?? 'Unknown'}',
-  //                     style: TextStyle(
-  //                       color: Colors.white,
-  //                       fontSize: 12.sp,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   ),
-  // );
-
+// Widget Recommended(List<Results> results) => Container(
+//   height: 250.h,
+//   margin: EdgeInsets.only(left: 16.w),
+//   child: results.isEmpty
+//       ? const Center(
+//     child: Text('No Results Found'),
+//   )
+//       : ListView.builder(
+//     scrollDirection: Axis.horizontal,
+//     itemCount: results.length,
+//     itemBuilder: (context, i) {
+//       return Container(
+//         width: 140.w,
+//         margin: EdgeInsets.only(right: 10.w),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Stack(
+//               children: [
+//                 Container(
+//                   height: 150.h,
+//                   child: results[i].backdropPath != null
+//                       ? CachedNetworkImage(
+//                     imageUrl:
+//                     'https://image.tmdb.org/t/p/w500${results[i].backdropPath}',
+//                     imageBuilder: (context, imageProvider) => Container(
+//                       decoration: BoxDecoration(
+//                         image: DecorationImage(
+//                           image: imageProvider,
+//                           fit: BoxFit.cover,
+//                         ),
+//                         borderRadius: BorderRadius.circular(10),
+//                       ),
+//                     ),
+//                     placeholder: (context, url) => const Center(
+//                       child: CircularProgressIndicator(),
+//                     ),
+//                     errorWidget: (context, url, error) => const Icon(Icons.error),
+//                   )
+//                       : const Center(
+//                     child: Text(
+//                       'No Image',
+//                       style: TextStyle(color: Colors.white),
+//                     ),
+//                   ),
+//                 ),
+//                 Positioned(
+//                   top: 10.h,
+//                   left: 10.w,
+//                   child: Container(
+//                     width: 30.w,
+//                     height: 30.h,
+//                     decoration: const BoxDecoration(
+//                       color: Colors.white,
+//                       shape: BoxShape.circle,
+//                     ),
+//                     child: Icon(
+//                       Icons.add,
+//                       size: 20.sp,
+//                       color: Colors.black,
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Padding(
+//               padding: EdgeInsets.only(top: 8.h),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(
+//                     results[i].title ?? 'No Title',
+//                     style: TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 14.sp,
+//                       fontWeight: FontWeight.w500,
+//                     ),
+//                     maxLines: 1,
+//                     overflow: TextOverflow.ellipsis,
+//                   ),
+//                   SizedBox(height: 4.h),
+//                   Row(
+//                     children: [
+//                       Icon(Icons.star, color: Colors.yellow, size: 18.sp),
+//                       SizedBox(width: 4.w),
+//                       Text(
+//                         '${results[i].voteAverage ?? 0.0}',
+//                         style: TextStyle(
+//                           color: Colors.white,
+//                           fontSize: 12.sp,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   SizedBox(height: 4.h),
+//                   Text(
+//                     'Release Date: ${results[i].releaseDate ?? 'Unknown'}',
+//                     style: TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 12.sp,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       );
+//     },
+//   ),
+// );
 }
