@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/home/data/models/MoviesDetailsModel.dart';
+import 'package:movies_app/features/home/data/models/movies_details_model.dart';
 
 class MoviesDetails extends StatelessWidget {
-  MoviesDetailsModel genres;
+  final MoviesDetailsModel genres;
 
-  MoviesDetails({required this.genres, super.key});
+  const MoviesDetails({required this.genres, super.key});
 
   @override
   Widget build(BuildContext context) {

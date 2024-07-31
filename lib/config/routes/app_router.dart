@@ -19,15 +19,20 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-       initialRoute: HomeScreen.routeName,
+        initialRoute: HomeScreen.routeName,
         routes: {
-          HomeScreen.routeName:(context)=>HomeScreen(),
-          BrowseTab.routeName:(context)=> BrowseTab(),
-          SearchTab.routeName:(context)=>const SearchTab(),
-          WatchListTab.routeName:(context)=>const WatchListTab(watchlist: [],),
-         HomeTab.routeName:(context)=>HomeTab(results: [], data: [],),
-          SignUpScreen.routeName:(context)=>SignUpScreen(),
-          LoginScreen.routeName:(context)=>LoginScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          BrowseTab.routeName: (context) => const BrowseTab(),
+          SearchTab.routeName: (context) => const SearchTab(),
+          WatchListTab.routeName: (context) => const WatchListTab(
+                watchlist: [],
+              ),
+          HomeTab.routeName: (context) => const HomeTab(
+                results: [],
+                data: [],
+              ),
+          SignUpScreen.routeName: (context) => const SignUpScreen(),
+          LoginScreen.routeName: (context) => const LoginScreen(),
         },
       ),
     );

@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/features/home/data/models/PopularModel.dart';
-import 'package:movies_app/features/home/data/models/TopRatedModel.dart';
+import 'package:movies_app/features/home/data/models/popular_model.dart';
+import 'package:movies_app/features/home/data/models/top_rated_model.dart';
 import 'package:movies_app/features/home/presentation/bloc/home_bloc.dart';
-import 'package:movies_app/features/home/presentation/pages/movies_details.dart';
 
 import '../../../../core/api/api_manager.dart';
 import '../../data/data_source/home_ds_impl.dart';
@@ -18,17 +16,17 @@ import '../../domain/use_cases/get_upcoming_use_case.dart';
 class HomeTab extends StatefulWidget {
   static const String routeName = "home";
 
-  List<Results> results;
-  List<Response> data;
+  final List<Results> results;
+  final List<Response> data;
 
-  HomeTab({required this.results, required this.data, super.key});
+  const HomeTab({required this.results, required this.data, super.key});
 
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
 
 class _HomeTabState extends State<HomeTab> {
-  int _currentIndex = 0;
+  // final int _currentIndex = 0;
   int index = 0;
 
   @override
@@ -121,7 +119,7 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                       ),
                       (state.popularModel != null)
-                          ? NewRelease(
+                          ? newRelease(
                               (state.popularModel?.data ?? []).cast<Response>())
                           : SizedBox(
                               height: 270.h,
@@ -171,7 +169,7 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  Widget NewRelease(List<Response> data) => Container(
+  Widget newRelease(List<Response> data) => Container(
         height: 180.h,
         margin: EdgeInsets.only(left: 16.w),
         child: data.isEmpty
@@ -205,12 +203,10 @@ class _HomeTabState extends State<HomeTab> {
                             Positioned(
                               top: -5.h,
                               left: -10.w,
-                              child: Stack(
-                                  children: [
+                              child: Stack(children: [
                                 ImageIcon(
                                   const AssetImage(
-                                      "assets/images/bookmark.png"
-                                  ),
+                                      "assets/images/bookmark.png"),
                                   size: 50.sp,
                                   // color: const Color(0xff514F4F),
                                   color: Colors.grey[800],

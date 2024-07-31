@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/api/api_manager.dart';
-import 'package:movies_app/features/browse/data/models/BrowseModel.dart';
+import 'package:movies_app/features/browse/data/models/browse_model.dart';
 import 'package:movies_app/features/browse/data/repositories/browse_repo_impl.dart';
 import 'package:movies_app/features/browse/domain/use_cases/get_browse_use_case.dart';
 import 'package:movies_app/features/browse/presentation/bloc/browse_bloc.dart';
@@ -12,7 +12,7 @@ import '../../data/data_sources/browse_ds_impl.dart';
 class BrowseTab extends StatefulWidget {
   static const String routeName = "Browse";
 
-  BrowseTab({Key? key, this.genres}) : super(key: key);
+  const BrowseTab({super.key, this.genres});
 
   final List<Genres>? genres;
 
@@ -34,7 +34,8 @@ class _BrowseTabState extends State<BrowseTab> {
             ),
           ),
         ),
-      )..add(const GetBrowseEvent()),
+        // )..add(const GetBrowseEvent()),
+      ),
       child: BlocConsumer<BrowseBloc, BrowseState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -61,10 +62,13 @@ class _BrowseTabState extends State<BrowseTab> {
                 ),
               ),
               Expanded(
-                child: state.browseModel?.genres == null
-                    ? const Center(child: CircularProgressIndicator())
-                    : GridView.builder(
-                  itemCount: state.browseModel!.genres!.length,
+                child:
+                    // state.browseModel?.genres == null
+                    //     ? const Center(child: CircularProgressIndicator())
+                    //     :
+                    GridView.builder(
+                  itemCount: 10,
+                  //state.browseModel!.genres!.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: (192 / 250),
                     crossAxisCount: 2,
@@ -73,9 +77,9 @@ class _BrowseTabState extends State<BrowseTab> {
                   ),
                   itemBuilder: (context, index) {
                     return BrowseItem(
-                      browseModel: state.browseModel,
+                      browseModel: BrowseModel(),
                       index: index,
-                      genres: state.browseModel!.genres,
+                      // genres: state.browseModel!.genres,
                     );
                   },
                 ),

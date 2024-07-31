@@ -1,16 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/api/api_manager.dart';
-import 'package:movies_app/features/browse/data/models/BrowseModel.dart';
-import 'package:movies_app/features/browse/data/models/DiscoverMovieModel.dart';
+import 'package:movies_app/features/browse/data/models/browse_model.dart';
 
 class BrowseItem extends StatefulWidget {
   final int index;
   final BrowseModel? browseModel;
   final List<Genres>? genres;
 
-  BrowseItem({
+  const BrowseItem({
     super.key,
     this.genres,
     required this.index,
@@ -35,23 +33,25 @@ class _BrowseItemState extends State<BrowseItem> {
     if (widget.genres == null) return;
     var genreId = widget.genres![widget.index].id;
 
-    print("Loading movies for genre ID: $genreId");
+    debugPrint("Loading movies for genre ID: $genreId");
 
     try {
       DiscoverMovieModel? movies = await ApiManager.getMoviesData(genreId);
-      print("Movies data: $movies");
-      if (movies != null && movies.results != null && movies.results!.isNotEmpty) {
+      debugPrint("Movies data: $movies");
+      if (movies != null &&
+          movies.results != null &&
+          movies.results!.isNotEmpty) {
         setState(() {
-          imageUrl = "https://image.tmdb.org/t/p/w500${movies.results![0].posterPath}";
+          imageUrl =
+              "https://image.tmdb.org/t/p/w500${movies.results![0].posterPath}";
         });
       } else {
-        print("No movies found for this genre");
+        debugPrint("No movies found for this genre");
       }
     } catch (e) {
-      print("Error loading image for genre: $e");
+      debugPrint("Error loading image for genre: $e");
     }
   }
-
 
   @override
   Widget build(BuildContext context) {

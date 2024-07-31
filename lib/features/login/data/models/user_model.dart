@@ -1,5 +1,4 @@
-
-import 'package:movies_app/features/login/domain/entities/ResponseEntity.dart';
+import 'package:movies_app/features/login/domain/entities/response_entity.dart';
 
 class UserModel extends ResponseEntity {
   UserModel({
