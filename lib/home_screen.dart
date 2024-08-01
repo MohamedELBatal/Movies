@@ -7,7 +7,7 @@ import 'package:movies_app/watch_list_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "homeScreen";
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,8 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/ic_home.png")),
                 label: "Home"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: "Search"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/ic_browse.png")),
                 label: "Browse"),
@@ -64,11 +63,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> tabs = [
-    HomeTab(
-      results: [],data: [],
+    const HomeTab(
+      results: [],
+      data: [],
     ),
     const SearchTab(),
-     BrowseTab(),
-    const WatchListTab(watchlist: [],)
+    const BrowseTab(),
+    const WatchListTab(
+      watchlist: [],
+    )
   ];
 }

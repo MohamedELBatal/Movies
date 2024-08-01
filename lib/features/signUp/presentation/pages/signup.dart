@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,13 +7,13 @@ import 'package:movies_app/home_screen.dart';
 import 'package:movies_app/features/login/presentation/pages/login.dart';
 import 'package:movies_app/features/signUp/data/data_sources/signup_ds_impl.dart';
 import 'package:movies_app/features/signUp/data/repositories/signup_repo_impl.dart';
-import 'package:movies_app/features/signUp/domain/entities/SignUpRequestModel.dart';
-import 'package:movies_app/features/signUp/domain/use_cases/signUpUseCase.dart';
+import 'package:movies_app/features/signUp/domain/entities/sign_up_request_model.dart';
+import 'package:movies_app/features/signUp/domain/use_cases/sign_up_use_case.dart';
 import 'package:movies_app/features/signUp/presentation/bloc/signup_bloc.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String routeName = "SignUp";
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -63,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
         builder: (context, state) {
           return Scaffold(
-              backgroundColor: AppColors.BackGround,
+              backgroundColor: AppColors.backGround,
               body: Padding(
                   padding: EdgeInsets.all(8.r),
                   child: Column(
@@ -162,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             fontSize: 12.sp,
                                             color: Colors.white)),
                                     TextSpan(
-                                        text: " " + 'Login',
+                                        text: " " 'Login',
                                         style: TextStyle(
                                             fontSize: 16.sp,
                                             color: Colors.white)),

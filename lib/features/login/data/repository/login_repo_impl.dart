@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:movies_app/core/cache/shared_pref.dart';
 import 'package:movies_app/core/errors/failures.dart';
 import 'package:movies_app/features/login/data/data_sources/remote/login_ds.dart';
-import 'package:movies_app/features/login/domain/entities/ResponseEntity.dart';
+import 'package:movies_app/features/login/domain/entities/response_entity.dart';
 import 'package:movies_app/features/login/domain/repositories/login_repo.dart';
 
 class LoginRepoImpl implements LoginRepo {

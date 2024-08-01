@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/home/data/models/PopularModel.dart'; // استيراد النموذج المستخدم للفيلم
+import 'package:movies_app/features/home/data/models/popular_model.dart'; // استيراد النموذج المستخدم للفيلم
 
 class WatchListTab extends StatelessWidget {
   static const String routeName = "Watch List";
@@ -28,27 +28,27 @@ class WatchListTab extends StatelessWidget {
           Expanded(
             child: watchlist.isEmpty
                 ? const Center(
-              child: Text(
-                "No movies added to watchlist",
-                style: TextStyle(color: Colors.white),
-              ),
-            )
+                    child: Text(
+                      "No movies added to watchlist",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
                 : ListView.builder(
-              itemCount: watchlist.length,
-              itemBuilder: (context, index) {
-                final movie = watchlist[index];
-                return ListTile(
-                  leading: Image.network(
-                    'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
-                    fit: BoxFit.cover,
+                    itemCount: watchlist.length,
+                    itemBuilder: (context, index) {
+                      final movie = watchlist[index];
+                      return ListTile(
+                        leading: Image.network(
+                          'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
+                          fit: BoxFit.cover,
+                        ),
+                        title: Text(
+                          movie.title ?? 'No Title',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      );
+                    },
                   ),
-                  title: Text(
-                    movie.title ?? 'No Title',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                );
-              },
-            ),
           ),
         ],
       ),

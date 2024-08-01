@@ -18,13 +18,13 @@ class SearchTab extends StatelessWidget {
             ),
             hintText: "Search",
             keyboardType: TextInputType.text,
-            textStyle: MaterialStatePropertyAll(
+            textStyle: WidgetStatePropertyAll(
               TextStyle(color: Colors.white),
             ),
-            hintStyle: MaterialStatePropertyAll(
+            hintStyle: WidgetStatePropertyAll(
               TextStyle(color: Colors.white),
             ),
-            backgroundColor: MaterialStatePropertyAll(Color(0xFF514F4F)),
+            backgroundColor: WidgetStatePropertyAll(Color(0xFF514F4F)),
           ),
           SizedBox(
             height: 200,
@@ -39,7 +39,7 @@ class SearchTab extends StatelessWidget {
           Text(
             "No Movies Found",
             style: TextStyle(
-                color: Color(0xffffffffac),
+                color: Color(0xffffffac),
                 fontSize: 15,
                 fontWeight: FontWeight.w400),
           ),

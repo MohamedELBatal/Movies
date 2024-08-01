@@ -13,7 +13,7 @@ import 'package:movies_app/features/signUp/presentation/pages/signup.dart';
 class LoginScreen extends StatefulWidget {
   static const String routeName = "login";
 
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         }, builder: (context, state) {
           return Scaffold(
-              backgroundColor: AppColors.BackGround,
+              backgroundColor: AppColors.backGround,
               body: Padding(
                   padding: EdgeInsets.all(8.r),
                   child: Column(
@@ -97,9 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: ElevatedButton(
                                 onPressed: () {
                                   BlocProvider.of<LoginBloc>(context).add(
-                                      LoginButtonEvent(
-                                          emailController.text, passwordController.text
-                                      ),
+                                    LoginButtonEvent(emailController.text,
+                                        passwordController.text),
                                   );
                                 },
                                 child: const Text("Login"))),
@@ -120,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             fontSize: 12.sp,
                                             color: Colors.white)),
                                     TextSpan(
-                                        text: " " + 'Create Account',
+                                        text: " " 'Create Account',
                                         style: TextStyle(
                                             fontSize: 16.sp,
                                             color: Colors.white)),

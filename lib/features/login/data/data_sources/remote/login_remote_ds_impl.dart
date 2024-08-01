@@ -2,8 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:movies_app/core/api/api_manager.dart';
 import 'package:movies_app/core/api/end_points.dart';
 import 'package:movies_app/features/login/data/data_sources/remote/login_ds.dart';
-import 'package:movies_app/features/login/data/models/UserModel.dart';
-
+import 'package:movies_app/features/login/data/models/user_model.dart';
 
 class LoginRemoteDSImpl implements LoginRemoteDS {
   @override
