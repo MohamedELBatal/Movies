@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/api/api_manager.dart';
+import 'package:movies_app/features/browse/data/models/DiscoverMovieModel.dart';
 import 'package:movies_app/features/browse/data/models/browse_model.dart';
 
 class BrowseItem extends StatefulWidget {
