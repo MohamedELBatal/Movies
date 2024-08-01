@@ -27,7 +27,7 @@ class _BrowseItemState extends State<BrowseItem> {
   @override
   void initState() {
     super.initState();
-    _loadImageForGenre();
+    _loadImageForGenre(); // تحميل الصورة
   }
 
   void _loadImageForGenre() async {
@@ -79,6 +79,9 @@ class _BrowseItemState extends State<BrowseItem> {
                         image: DecorationImage(
                           image: NetworkImage(imageUrl!),
                           fit: BoxFit.cover,
+                          onError: (exception, stackTrace) {
+                            debugPrint('Failed to load image: $exception');
+                          },
                         ),
                       ),
                       child: Container(
@@ -88,6 +91,7 @@ class _BrowseItemState extends State<BrowseItem> {
                         ),
                       ),
                     ),
+
                   Text(
                     genre?.name ?? "",
                     style: const TextStyle(
