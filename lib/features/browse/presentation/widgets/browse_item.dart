@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/api/api_manager.dart';
+import 'package:movies_app/features/browse/data/models/DiscoverMovieModel.dart';
 import 'package:movies_app/features/browse/data/models/browse_model.dart';
 
 class BrowseItem extends StatefulWidget {
@@ -26,7 +27,7 @@ class _BrowseItemState extends State<BrowseItem> {
   @override
   void initState() {
     super.initState();
-    _loadImageForGenre();
+    _loadImageForGenre(); // تحميل الصورة
   }
 
   void _loadImageForGenre() async {
@@ -78,6 +79,9 @@ class _BrowseItemState extends State<BrowseItem> {
                         image: DecorationImage(
                           image: NetworkImage(imageUrl!),
                           fit: BoxFit.cover,
+                          onError: (exception, stackTrace) {
+                            debugPrint('Failed to load image: $exception');
+                          },
                         ),
                       ),
                       child: Container(
@@ -87,6 +91,7 @@ class _BrowseItemState extends State<BrowseItem> {
                         ),
                       ),
                     ),
+
                   Text(
                     genre?.name ?? "",
                     style: const TextStyle(

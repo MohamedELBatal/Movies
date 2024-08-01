@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/features/browse/presentation/pages/browse_tab.dart';
 import 'package:movies_app/features/home/presentation/pages/home_tab.dart';
+import 'package:movies_app/profile_tab.dart';
 import 'package:movies_app/search_tab.dart';
 import 'package:movies_app/watch_list_tab.dart';
 
@@ -44,6 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/ic_watchlist.png")),
                 label: "WatchList"),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
+            ),
+
           ]),
       body: Column(
         children: [
@@ -71,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const BrowseTab(),
     const WatchListTab(
       watchlist: [],
-    )
+    ),
+     ProfileTab(),
   ];
 }
