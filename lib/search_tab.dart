@@ -18,13 +18,13 @@ class SearchTab extends StatelessWidget {
             ),
             hintText: "Search",
             keyboardType: TextInputType.text,
-            textStyle: WidgetStatePropertyAll(
+            textStyle: MaterialStatePropertyAll(
               TextStyle(color: Colors.white),
             ),
-            hintStyle: WidgetStatePropertyAll(
+            hintStyle: MaterialStatePropertyAll(
               TextStyle(color: Colors.white),
             ),
-            backgroundColor: WidgetStatePropertyAll(Color(0xFF514F4F)),
+            backgroundColor: MaterialStatePropertyAll(Color(0xFF514F4F)),
           ),
           SizedBox(
             height: 200,
