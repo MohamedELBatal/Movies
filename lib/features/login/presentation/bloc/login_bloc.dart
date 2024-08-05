@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -16,7 +15,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   LoginBloc(this.loginUseCase) : super(LoginInitialState()) {
     on<LoginEvent>((event, emit) {
-      // TODO: implement event handler
     });
 
     on<LoginButtonEvent>((event, emit) async {
