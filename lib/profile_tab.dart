@@ -33,20 +33,24 @@ class ProfileTab extends StatelessWidget {
                 child: InkWell(
                   onTap: () {},
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    decoration: BoxDecoration(
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Colors.white),),
-                    child: const Icon(Icons.person,color: Colors.grey,size: 200,)
-                  ),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: const Icon(
+                        Icons.person,
+                        color: Colors.grey,
+                        size: 200,
+                      )),
                 ),
               ),
               const Text(
                 "Name",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.white),
               ),
               TextFormField(
@@ -70,7 +74,7 @@ class ProfileTab extends StatelessWidget {
                 "Phone Number",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.white),
               ),
               TextFormField(
@@ -94,7 +98,7 @@ class ProfileTab extends StatelessWidget {
                 "Email",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.white),
               ),
               TextFormField(
@@ -118,7 +122,7 @@ class ProfileTab extends StatelessWidget {
                 "Password",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.white),
               ),
               TextFormField(

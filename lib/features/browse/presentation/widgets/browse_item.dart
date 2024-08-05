@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/api/api_manager.dart';
+import 'package:movies_app/features/browse/data/models/BrowseModel.dart';
 import 'package:movies_app/features/browse/data/models/DiscoverMovieModel.dart';
-import 'package:movies_app/features/browse/data/models/browse_model.dart';
 
 class BrowseItem extends StatefulWidget {
   final int index;
   final BrowseModel? browseModel;
   final List<Genres>? genres;
 
-  const BrowseItem({
+  BrowseItem({
     super.key,
     this.genres,
     required this.index,
@@ -27,32 +27,30 @@ class _BrowseItemState extends State<BrowseItem> {
   @override
   void initState() {
     super.initState();
-    _loadImageForGenre(); // تحميل الصورة
+    _loadImageForGenre();
   }
 
   void _loadImageForGenre() async {
     if (widget.genres == null) return;
     var genreId = widget.genres![widget.index].id;
 
-    debugPrint("Loading movies for genre ID: $genreId");
+    print("Loading movies for genre ID: $genreId");
 
     try {
       DiscoverMovieModel? movies = await ApiManager.getMoviesData(genreId);
-      debugPrint("Movies data: $movies");
-      if (movies != null &&
-          movies.results != null &&
-          movies.results!.isNotEmpty) {
+      print("Movies data: $movies");
+      if (movies != null && movies.results != null && movies.results!.isNotEmpty) {
         setState(() {
-          imageUrl =
-              "https://image.tmdb.org/t/p/w500${movies.results![0].posterPath}";
+          imageUrl = "https://image.tmdb.org/t/p/w500${movies.results![0].posterPath}";
         });
       } else {
-        debugPrint("No movies found for this genre");
+        print("No movies found for this genre");
       }
     } catch (e) {
-      debugPrint("Error loading image for genre: $e");
+      print("Error loading image for genre: $e");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +77,6 @@ class _BrowseItemState extends State<BrowseItem> {
                         image: DecorationImage(
                           image: NetworkImage(imageUrl!),
                           fit: BoxFit.cover,
-                          onError: (exception, stackTrace) {
-                            debugPrint('Failed to load image: $exception');
-                          },
                         ),
                       ),
                       child: Container(
@@ -91,7 +86,6 @@ class _BrowseItemState extends State<BrowseItem> {
                         ),
                       ),
                     ),
-
                   Text(
                     genre?.name ?? "",
                     style: const TextStyle(

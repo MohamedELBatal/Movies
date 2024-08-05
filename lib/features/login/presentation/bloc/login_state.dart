@@ -1,12 +1,15 @@
 part of 'login_bloc.dart';
 
+
+
+@immutable
 class LoginState {
-  final RequestStatus? status;
+  RequestStatus? status;
 
-  final ResponseEntity? responseEntity;
-  final Failures? failures;
+  ResponseEntity? responseEntity;
+  Failures? failures;
 
-  const LoginState({this.status, this.responseEntity, this.failures});
+  LoginState({this.status, this.responseEntity, this.failures});
 
   LoginState copyWith({
     RequestStatus? status,
@@ -21,5 +24,5 @@ class LoginState {
 }
 
 class LoginInitialState extends LoginState {
-  const LoginInitialState() : super(status: RequestStatus.init);
+  LoginInitialState() : super(status: RequestStatus.init);
 }

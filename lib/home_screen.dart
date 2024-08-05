@@ -69,12 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> tabs = [
-    const HomeTab(
+     HomeTab(
       results: [],
       data: [],
     ),
     const SearchTab(),
-    const BrowseTab(),
+     BrowseTab(),
     const WatchListTab(
       watchlist: [],
     ),
