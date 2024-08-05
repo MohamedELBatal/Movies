@@ -1,16 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/core/api/api_manager.dart';
 import 'package:movies_app/features/browse/data/models/BrowseModel.dart';
-import 'package:movies_app/features/browse/data/models/DiscoverMovieModel.dart';
 
 class BrowseItem extends StatefulWidget {
   final int index;
   final BrowseModel? browseModel;
   final List<Genres>? genres;
 
-  BrowseItem({
+  const BrowseItem({
     super.key,
     this.genres,
     required this.index,
@@ -22,41 +19,32 @@ class BrowseItem extends StatefulWidget {
 }
 
 class _BrowseItemState extends State<BrowseItem> {
-  String? imageUrl;
-  int index = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadImageForGenre();
-  }
-
-  void _loadImageForGenre() async {
-    if (widget.genres == null) return;
-    var genreId = widget.genres![widget.index].id;
-
-    print("Loading movies for genre ID: $genreId");
-
-    try {
-      DiscoverMovieModel? movies = await ApiManager.getMoviesData(genreId);
-      if (movies != null && movies.results != null && movies.results!.isNotEmpty) {
-        setState(() {
-          imageUrl = "https://image.tmdb.org/t/p/w500${movies.results![index].posterPath}";
-        });
-      } else {
-        print("No movies found for genre $genreId");
-        // Handle no movies found case, e.g., display an error message or placeholder
-      }
-    } catch (e) {
-      print("Error loading image for genre $genreId: $e");
-      // Handle error, e.g., display an error message or retry
-    }
-  }
-
+  final List<String> images = [
+    "assets/images/action.jpg",
+    "assets/images/adventure.jpg",
+    "assets/images/animation.jpeg",
+    "assets/images/comedy.jpg",
+    "assets/images/crime.jpg",
+    "assets/images/documentry.jpeg",
+    "assets/images/drama.jpeg",
+    "assets/images/family.jpeg",
+    "assets/images/fantasy.jpeg",
+    "assets/images/history.jpg",
+    "assets/images/horror.jpg",
+    "assets/images/music.jpeg",
+    "assets/images/mystery.jpg",
+    "assets/images/romance.jpg",
+    "assets/images/sience fiction.jpg",
+    "assets/images/thriller.jpg",
+    "assets/images/tv_movie.jpg",
+    "assets/images/war.jpeg",
+    "assets/images/western.png",
+  ];
 
   @override
   Widget build(BuildContext context) {
     var genre = widget.genres?[widget.index];
+    var image = images[widget.index % images.length];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.h),
@@ -70,27 +58,25 @@ class _BrowseItemState extends State<BrowseItem> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  if (imageUrl != null)
-                    Image(
-                      image: CachedNetworkImageProvider(imageUrl!),
-                      errorBuilder: (context, url, error) => Icon(Icons.error),
-                      fit: BoxFit.cover,
-                    ),
-                  // Placeholder for loading or error state
-                  if (imageUrl == null)
-                    const Placeholder(
-                      child: CircularProgressIndicator(),
-                    ),
-                  Text(
-                    genre?.name ?? "",
-                    style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  SizedBox(
+                    height: 150,
+                    width: 250,
+                    child: Image.asset(
+                      image, // استخدم الصورة المحلية هنا
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ],
               ),
+            ),
+          ),
+          Text(
+            genre?.name ?? "",
+            style: const TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              backgroundColor: Colors.black54,
             ),
           ),
         ],
@@ -98,4 +84,3 @@ class _BrowseItemState extends State<BrowseItem> {
     );
   }
 }
-

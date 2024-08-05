@@ -5,6 +5,7 @@ class EndPoints {
   static const String browse = "zak/movies_api/movies_list.json";
   static const String details = "zak/movies_api/details.json";
   static const String discover = "zak/movies_api/discover_movies.json";
+  static const String images = "zak/movies_api/image.json";
   static const String signIn = "zak/movies_api/SignIn.json";
   static const String signUp = "zak/movies_api/signUp.json";
 }
