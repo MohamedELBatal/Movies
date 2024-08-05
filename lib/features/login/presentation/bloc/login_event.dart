@@ -1,10 +1,13 @@
 part of 'login_bloc.dart';
 
-abstract class LoginEvent {}
+@immutable
+abstract class LoginEvent {
 
-class LoginButtonEvent extends LoginEvent {
-  final String email;
-  final String password;
+}
+
+class LoginButtonEvent extends LoginEvent{
+  String email;
+  String password;
 
   LoginButtonEvent(this.email, this.password);
 }
