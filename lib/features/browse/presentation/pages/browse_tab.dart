@@ -46,17 +46,17 @@ class _BrowseTabState extends State<BrowseTab> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 50.0),
+                      padding: EdgeInsets.only(top: 30.0),
                       child: Text(
                         "Browse Category",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
-                    SizedBox(height: 25),
+                    SizedBox(height: 0),
                   ],
                 ),
               ),
