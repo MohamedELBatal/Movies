@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/api/api_manager.dart';
@@ -38,16 +39,17 @@ class _BrowseItemState extends State<BrowseItem> {
 
     try {
       DiscoverMovieModel? movies = await ApiManager.getMoviesData(genreId);
-      print("Movies data: $movies");
       if (movies != null && movies.results != null && movies.results!.isNotEmpty) {
         setState(() {
-          imageUrl = "https://image.tmdb.org/t/p/w500${movies.results![0].posterPath}";
+          imageUrl = "https://image.tmdb.org/t/p/w500${movies.results![index].posterPath}";
         });
       } else {
-        print("No movies found for this genre");
+        print("No movies found for genre $genreId");
+        // Handle no movies found case, e.g., display an error message or placeholder
       }
     } catch (e) {
-      print("Error loading image for genre: $e");
+      print("Error loading image for genre $genreId: $e");
+      // Handle error, e.g., display an error message or retry
     }
   }
 
@@ -69,22 +71,15 @@ class _BrowseItemState extends State<BrowseItem> {
                 alignment: Alignment.center,
                 children: [
                   if (imageUrl != null)
-                    Container(
-                      height: 150,
-                      width: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: DecorationImage(
-                          image: NetworkImage(imageUrl!),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.6),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
+                    Image(
+                      image: CachedNetworkImageProvider(imageUrl!),
+                      errorBuilder: (context, url, error) => Icon(Icons.error),
+                      fit: BoxFit.cover,
+                    ),
+                  // Placeholder for loading or error state
+                  if (imageUrl == null)
+                    const Placeholder(
+                      child: CircularProgressIndicator(),
                     ),
                   Text(
                     genre?.name ?? "",
@@ -103,3 +98,4 @@ class _BrowseItemState extends State<BrowseItem> {
     );
   }
 }
+
