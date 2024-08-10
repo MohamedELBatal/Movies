@@ -62,6 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Image.asset("assets/images/movies.png"),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.07),
                         TextFormField(
                           controller: emailController,
                           decoration: InputDecoration(
@@ -93,16 +96,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 18.h,
                         ),
                         SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  BlocProvider.of<LoginBloc>(context).add(
-                                      LoginButtonEvent(
-                                          emailController.text, passwordController.text
-                                      ),
-                                  );
-                                },
-                                child: const Text("Login"))),
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<LoginBloc>(context).add(
+                                LoginButtonEvent(emailController.text,
+                                    passwordController.text
+                                ),
+                              );
+                            },
+                            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.grey[700]),),
+                            child: const Text("Login",style: TextStyle(color: Colors.white),),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsets.only(top: 32.h),
                           child: Center(
