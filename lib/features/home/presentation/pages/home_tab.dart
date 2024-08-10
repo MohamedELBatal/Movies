@@ -28,6 +28,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   // final int _currentIndex = 0;
   int index = 0;
+  bool isBookmarked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -203,24 +204,32 @@ class _HomeTabState extends State<HomeTab> {
                   Positioned(
                     top: -10.h,
                     left: -12.w,
-                    child: Stack(children: [
-                      ImageIcon(
-                        const AssetImage(
-                            "assets/images/bookmark.png"),
-                        size: 50.sp,
-                        // color: const Color(0xff514F4F),
-                        color: Colors.grey[800],
-                      ),
-                      Positioned(
-                        top: 10.h,
-                        left: 13.w,
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 20,
+                    child:
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isBookmarked = !isBookmarked;
+                        });
+                      },
+                      child: Stack(children: [
+                        ImageIcon(
+                          const AssetImage(
+                              "assets/images/bookmark.png"),
+                          size: 50.sp,
+                          // color: const Color(0xff514F4F),
+                          color: Colors.grey[800],
                         ),
-                      ),
-                    ]),
+                        Positioned(
+                          top: 10.h,
+                          left: 13.w,
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ]),
+                    ),
                   ),
                 ],
               ),
