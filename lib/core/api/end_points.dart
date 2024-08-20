@@ -1,11 +1,10 @@
 class EndPoints {
-  static const String popular = "zak/movies_api/popular.json";
-  static const String upComing = "zak/movies_api/upcoming.json";
-  static const String topRated = "zak/movies_api/top_rated.json";
-  static const String browse = "zak/movies_api/movies_list.json";
-  static const String details = "zak/movies_api/details.json";
-  static const String discover = "zak/movies_api/discover_movies.json";
-  static const String images = "zak/movies_api/image.json";
+  static const String popular = "3/movie/popular";
+  static const String upComing = "3/movie/upcoming";
+  static const String topRated = "3/movie/top_rated";
+  static const String browse = "3/genre/movie/list";
+  static const String details = "3/movie/100";
+  static const String discover = "3/discover/movie";
   static const String signIn = "zak/movies_api/SignIn.json";
   static const String signUp = "zak/movies_api/signUp.json";
 }

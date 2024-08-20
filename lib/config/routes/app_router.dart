@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-       initialRoute: LoginScreen.routeName,
+       initialRoute: HomeScreen.routeName,
         routes: {
           HomeScreen.routeName:(context)=>HomeScreen(),
           BrowseTab.routeName:(context)=> BrowseTab(),
