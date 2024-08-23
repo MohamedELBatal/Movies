@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/api/api_manager.dart';
 import 'package:movies_app/features/browse/presentation/pages/browse_tab.dart';
+import 'package:movies_app/features/search/data/data_sources/search_ds_impl.dart';
+import 'package:movies_app/features/search/data/repositories/search_repo_impl.dart';
+import 'package:movies_app/features/search/domain/use_cases/get_search_use_case.dart';
+import 'package:movies_app/features/search/presentation/cubit/search_cubit.dart';
+import 'package:movies_app/features/search/presentation/pages/search_page.dart';
 import 'package:movies_app/home_screen.dart';
 import 'package:movies_app/features/home/presentation/pages/home_tab.dart';
-import 'package:movies_app/search_tab.dart';
+import 'package:movies_app/features/search/presentation/pages/search_tab.dart';
 import 'package:movies_app/watch_list_tab.dart';
 import 'package:movies_app/features/login/presentation/pages/login.dart';
 import 'package:movies_app/features/signUp/presentation/pages/signup.dart';
@@ -19,15 +26,20 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-       initialRoute: HomeScreen.routeName,
+        initialRoute: HomeScreen.routeName,
         routes: {
-          HomeScreen.routeName:(context)=>HomeScreen(),
-          BrowseTab.routeName:(context)=> BrowseTab(),
-          SearchTab.routeName:(context)=>const SearchTab(),
-          WatchListTab.routeName:(context)=>const WatchListTab(watchlist: [],),
-         HomeTab.routeName:(context)=>HomeTab(results: [], data: [],),
-          SignUpScreen.routeName:(context)=>SignUpScreen(),
-          LoginScreen.routeName:(context)=>LoginScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          BrowseTab.routeName: (context) => BrowseTab(),
+          SearchTab.routeName: (context) =>  SearchTab(),
+          WatchListTab.routeName: (context) => const WatchListTab(
+                watchlist: [],
+              ),
+          HomeTab.routeName: (context) => const HomeTab(
+                results: [],
+                data: [],
+              ),
+          SignUpScreen.routeName: (context) => SignUpScreen(),
+          LoginScreen.routeName: (context) => LoginScreen(),
         },
       ),
     );
