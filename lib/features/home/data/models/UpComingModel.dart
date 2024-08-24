@@ -12,7 +12,7 @@ class UpComingModel {
     if (json['results'] != null) {
       response = [];
       json['results'].forEach((v) {
-        response?.add(Results.fromJson(v));
+        response?.add(Result.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -20,14 +20,14 @@ class UpComingModel {
   }
   Dates? dates;
   int? page;
-  List<Results>? response;
+  List<Result>? response;
   int? totalPages;
   int? totalResults;
 
 }
 
-class Results {
-  Results({
+class Result {
+  Result({
       this.adult, 
       this.backdropPath, 
       this.genreIds, 
@@ -43,7 +43,7 @@ class Results {
       this.voteAverage, 
       this.voteCount,});
 
-  Results.fromJson(dynamic json) {
+  Result.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];
