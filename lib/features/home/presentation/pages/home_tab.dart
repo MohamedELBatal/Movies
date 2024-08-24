@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/components/constants.dart';
@@ -27,7 +27,6 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   // final int _currentIndex = 0;
-  int index = 0;
   bool isBookmarked = false;
 
   @override
@@ -66,20 +65,172 @@ class _HomeTabState extends State<HomeTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // const PopularMovies(),
                 Stack(
                   children: [
-                    ImageSlideshow(
-                        width: double.infinity,
+                    CarouselSlider(
+                      options: CarouselOptions(
                         height: 220,
-                        initialPage: index,
-                        indicatorColor: Colors.red,
-                        indicatorRadius: 0,
-                        autoPlayInterval: 1500,
-                        isLoop: false,
-                        children: [
-                          Popularity(state.popularModel?.data ?? [])
-                        ]),
+                        // ارتفاع الـ slider
+                        autoPlay: true,
+                        // تشغيل تلقائي
+                        autoPlayInterval: const Duration(seconds: 4),
+                        // الفاصل الزمني للتشغيل التلقائي
+                        enlargeCenterPage: true,
+                        // تكبير العنصر النشط
+                        aspectRatio: 16 / 9,
+                        // نسبة العرض إلى الارتفاع
+                        viewportFraction: 1.0, // نسبة عرض الصفحة
+                      ),
+                      items: (state.popularModel?.data ?? []).map((item) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: item.backdropPath != null
+                                        ? CachedNetworkImage(
+                                            imageUrl:
+                                                '${Constants.BASE_URL_IMAGE}${item.backdropPath}',
+                                            fit: BoxFit.fill,
+                                            placeholder: (context, url) =>
+                                                const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error),
+                                          )
+                                        : const Center(
+                                            child: Text(
+                                              'No Image Available',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                  ),
+                                  // إضافة الطبقة الأمامية التي تحتوي على معلومات الفيلم
+
+                                  Positioned(
+                                    bottom: 0, // تحديد موضع النص أسفل الصورة
+                                    left: 0, // تحديد المسافة من اليسار
+                                    right: 0, // تحديد المسافة من اليمين
+                                    child: Container(
+                                      padding: const EdgeInsets.all(8.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(1.0),
+                                        // خلفية شبه شفافة
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            item.title ?? 'Unknown Title',
+                                            // اسم الفيلم
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(width: 45,),
+                                              Text(
+                                                ' ${item.releaseDate}    Rate : ${item.voteAverage} ',
+                                                // تفاصيل الفيلم
+                                                style: TextStyle(
+                                                  color: Colors.white
+                                                      .withOpacity(0.9),
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: 20,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Stack(
+                                    children: [
+                                      Positioned(
+                                        bottom : 0,
+                                        child: SizedBox(
+                                          height: 130,
+                                          width: 120,
+                                          child: CachedNetworkImage(
+                                            imageUrl:
+                                            "${Constants.BASE_URL_IMAGE}${item.backdropPath}",
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 90,
+                                        left: -10.w,
+                                        child: InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              isBookmarked = !isBookmarked;
+                                            });
+                                          },
+                                          child: Stack(children: [
+                                            ImageIcon(
+                                              const AssetImage(
+                                                  "assets/images/bookmark.png"),
+                                              size: 50.sp,
+                                              // color: const Color(0xff514F4F),
+                                              color: Colors.grey[800],
+                                            ),
+                                            Positioned(
+                                              top: 10.h,
+                                              left: 13.w,
+                                              child: const Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          ]),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  // إضافة زر التشغيل
+                                  const Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.play_circle_outline,
+                                        color: Colors.white60,
+                                        size: 50,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    )
                   ],
                 ),
                 Container(
@@ -391,29 +542,26 @@ class _HomeTabState extends State<HomeTab> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               child: data[i].backdropPath != null
                                   ? CachedNetworkImage(
-                                    imageUrl:
-                                        'https://image.tmdb.org/t/p/w500${data[i].backdropPath}',
-                                    imageBuilder:
-                                        (context, imageProvider) =>
-                                            Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/w500${data[i].backdropPath}',
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(10),
                                       ),
-                                    ),
-                                    placeholder: (context, url) =>
-                                        const Center(
-                                      child:
-                                          CircularProgressIndicator(),
-                                    ),
-                                    errorWidget:
-                                        (context, url, error) =>
-                                            const Icon(Icons.error),
-                                  )
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    )
                                   : const Center(
                                       child: Text(
                                         'No Image',
