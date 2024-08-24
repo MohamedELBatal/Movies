@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/core/components/constants.dart';
 import 'package:movies_app/features/home/data/models/PopularModel.dart';
 import 'package:movies_app/features/home/data/models/TopRatedModel.dart';
 import 'package:movies_app/features/home/presentation/bloc/home_bloc.dart';
@@ -105,7 +107,7 @@ class _HomeTabState extends State<HomeTab> {
                   ],
                 ),
                 Container(
-                  color: Colors.grey[900],
+                  color: const Color(0xff282A28),
                   padding: EdgeInsets.symmetric(vertical: 20.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,7 +139,7 @@ class _HomeTabState extends State<HomeTab> {
                   height: 20,
                 ),
                 Container(
-                  color: Colors.grey[900], // لون الخلفية لقسم Recommended
+                  color: const Color(0xff282A28), // لون الخلفية لقسم Recommended
                   padding: EdgeInsets.symmetric(vertical: 20.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +175,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   Widget newRelease(List<Response> data) => Container(
-    height: 180.h,
+    height: 155.h,
     margin: EdgeInsets.only(left: 16.w),
     child: data.isEmpty
         ? const Center(
@@ -184,7 +186,7 @@ class _HomeTabState extends State<HomeTab> {
       itemCount: data.length,
       itemBuilder: (context, i) {
         return Container(
-          width: 140.w,
+          width: 155.w,
           margin: EdgeInsets.only(right: 10.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,7 +198,7 @@ class _HomeTabState extends State<HomeTab> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                          'https://image.tmdb.org/t/p/w500${data[i].backdropPath}',
+                          '${Constants.BASE_URL_IMAGE}${data[i].backdropPath}',
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -235,19 +237,19 @@ class _HomeTabState extends State<HomeTab> {
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 8.h),
-                child: Text(
-                  data[i].title ?? '',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.only(top: 8.h),
+              //   child: Text(
+              //     data[i].title ?? '',
+              //     style: GoogleFonts.poppins(
+              //       color: Colors.white,
+              //       fontSize: 14.sp,
+              //       fontWeight: FontWeight.w500,
+              //     ),
+              //     maxLines: 1,
+              //     overflow: TextOverflow.ellipsis,
+              //   ),
+              // ),
             ],
           ),
         );
@@ -260,14 +262,14 @@ Widget Recommended(List<Results> results) => Container(
   margin: EdgeInsets.only(left: 16.w),
   child: results.isEmpty
       ? const Center(
-    child: Text('No Results Found'),
+        child: Text('No Results Found'),
   )
       : ListView.builder(
     scrollDirection: Axis.horizontal,
     itemCount: results.length,
     itemBuilder: (context, i) {
       return Container(
-        width: 140.w,
+        width: 155.w,
         margin: EdgeInsets.only(right: 10.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -333,44 +335,48 @@ Widget Recommended(List<Results> results) => Container(
 
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 8.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    results[i].title ?? 'No Title',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: 4.h),
-                  Row(
-                    children: [
-                      Icon(Icons.star, color: Colors.yellow, size: 18.sp),
-                      SizedBox(width: 4.w),
-                      Text(
-                        '${results[i].voteAverage ?? 0.0}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                        ),
+            Container(
+              color: const Color(0xff343534),
+              child: Padding(
+                padding: EdgeInsets.only(top: 10.h,left: 8.w,),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      results[i].title ?? 'No Title',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    'Release Date: ${results[i].releaseDate ?? 'Unknown'}',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12.sp,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                    SizedBox(height: 4.h),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: Colors.yellow, size: 18.sp),
+                        SizedBox(width: 4.w),
+                        Text(
+                          '${results[i].voteAverage ?? 0.0}',
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 4.h),
+                    Text(
+                      results[i].releaseDate ?? 'Unknown',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                    SizedBox(height: 6.h),
+                  ],
+                ),
               ),
             ),
           ],

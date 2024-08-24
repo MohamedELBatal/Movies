@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/features/browse/presentation/pages/browse_tab.dart';
 import 'package:movies_app/features/home/presentation/pages/home_tab.dart';
-import 'package:movies_app/profile_tab.dart';
-import 'package:movies_app/search_tab.dart';
+import 'package:movies_app/features/search/presentation/pages/search_tab.dart';
 import 'package:movies_app/watch_list_tab.dart';
+
+import 'features/search/presentation/pages/search_page.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "homeScreen";
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xff121312),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: index,
           showSelectedLabels: true,
@@ -45,10 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/ic_watchlist.png")),
                 label: "WatchList"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.person),
+            //   label: "Profile",
+            // ),
 
           ]),
       body: Column(
@@ -73,11 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
       results: [],
       data: [],
     ),
-    const SearchTab(),
+     SearchTab(),
      BrowseTab(),
     const WatchListTab(
       watchlist: [],
     ),
-     ProfileTab(),
+     // ProfileTab(),
   ];
 }

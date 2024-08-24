@@ -53,7 +53,7 @@ class _BrowseItemState extends State<BrowseItem> {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                // يمكن إضافة إجراء عند الضغط على العنصر
+
               },
               child: Stack(
                 alignment: Alignment.center,
@@ -62,7 +62,7 @@ class _BrowseItemState extends State<BrowseItem> {
                     height: 150,
                     width: 250,
                     child: Image.asset(
-                      image, // استخدم الصورة المحلية هنا
+                      image,
                       fit: BoxFit.fill,
                     ),
                   ),
