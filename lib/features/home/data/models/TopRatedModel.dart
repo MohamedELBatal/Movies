@@ -1,31 +1,31 @@
 class TopRatedModel {
   TopRatedModel({
       this.page, 
-      this.results, 
+      this.responses,
       this.totalPages, 
       this.totalResults,});
 
   TopRatedModel.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
-      results = [];
+      responses = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        responses?.add(Responses.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
   int? page;
-  List<Results>? results;
+  List<Responses>? responses;
   int? totalPages;
   int? totalResults;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['page'] = page;
-    if (results != null) {
-      map['results'] = results?.map((v) => v.toJson()).toList();
+    if (responses != null) {
+      map['results'] = responses?.map((v) => v.toJson()).toList();
     }
     map['total_pages'] = totalPages;
     map['total_results'] = totalResults;
@@ -34,8 +34,8 @@ class TopRatedModel {
 
 }
 
-class Results {
-  Results({
+class Responses {
+  Responses({
       this.adult, 
       this.backdropPath, 
       this.genreIds, 
@@ -51,7 +51,7 @@ class Results {
       this.voteAverage, 
       this.voteCount,});
 
-  Results.fromJson(dynamic json) {
+  Responses.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];

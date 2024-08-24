@@ -1,7 +1,6 @@
 // import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:movies_app/core/api/api_manager.dart';
 // import 'package:movies_app/core/utils/app_colors.dart';
 // import 'package:movies_app/features/home/presentation/cubit/cubit.dart';
 //
@@ -13,8 +12,8 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return CarouselSlider(
-//       items: ApiManager.getMoviesData(context).resultsPopular.map((results) {
-//         return return Stack(
+//       items:  HomeCubit.get(context).popularResults.map((results) {
+//         return  Stack(
 //           alignment: Alignment.bottomLeft,
 //           children: [
 //             Column(
@@ -22,7 +21,7 @@
 //                 Builder(
 //                   builder: (context) {
 //                     return Image.network(
-//                       "${Constants.baseURLImage}${results.backdropPath}",
+//                       "${Constants.BASE_URL_IMAGE}${results.backdropPath}",
 //                       fit: BoxFit.cover,
 //                       height: 217.h,
 //                     );
@@ -45,7 +44,7 @@
 //                             //     arguments: results.id.toString());
 //                           },
 //                           child: Image.network(
-//                             "${Constants.baseURLImage}${results.posterPath}",
+//                             "${Constants.BASE_URL_IMAGE}${results.posterPath}",
 //                             width: 130.w,
 //                             fit: BoxFit.fill,
 //                           ),
@@ -83,12 +82,12 @@
 //                       children: [
 //                         Text(
 //                           results.originalTitle ?? "",
-//                           style: AppStyles.title_15,
+//                           style: const TextStyle(fontSize: 15),
 //                           overflow: TextOverflow.ellipsis,
 //                         ),
 //                         Text(
 //                           results.releaseDate.toString().substring(0, 4),
-//                           style: AppStyles.descriptionInter_10,
+//                           style:  const TextStyle(fontSize: 15),
 //                         ),
 //                         SizedBox(
 //                           height: 35.h,

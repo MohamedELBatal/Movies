@@ -34,10 +34,7 @@ class MyApp extends StatelessWidget {
           WatchListTab.routeName: (context) => const WatchListTab(
                 watchlist: [],
               ),
-          HomeTab.routeName: (context) => const HomeTab(
-                results: [],
-                data: [],
-              ),
+          HomeTab.routeName: (context) => const HomeTab(),
           SignUpScreen.routeName: (context) => SignUpScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),
         },
